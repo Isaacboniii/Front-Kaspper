@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="demanda.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
+    <title>Detalhes do Projeto</title>
+</head>
+
+<body class="myBackground">
+    <div class="container mt-5">
+
+        <div class="custom-card">
+            <h2 class="text-center text-light mt-5">Demanda</h2>
+            <div class="custom-list d-flex flex-wrap">
+
+                <div class="p-2 flex-fill">
+                    <ul>
+                        <li><strong>Nome do Projeto:</strong> Sistema de Gerenciamento de Estoque</li>
+                        <li><strong>Empresa:</strong> Coca-cola</li>
+                        <li><strong>Nome:</strong> Joao Pedro</li>
+                    </ul>
+                </div>
+
+
+                <div class="p-2 flex-fill">
+                    <ul>
+                        <li><strong>Prioridade:</strong> <span class="badge bg-secondary">Baixa</span> ,
+                            <span class="badge bg-warning">Média</span>, <span class="badge bg-danger">Alta</span>
+                        </li>
+                        <li><strong>Status:</strong> <span class="badge bg-primary">Nova</span> ,
+                            <span class="badge bg-info">Em andamento</span>, <span
+                                class="badge bg-success">Concluída</span>
+                        </li>
+                        <li><strong>Prazo de Entrega:</strong> 30/12/2024</li>
+                        <li><strong>Tecnologias Necessárias:</strong> JavaScript, Node.js, MySQL, React, API RESTful
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <li><strong>Descrição:</strong> Este projeto visa o desenvolvimento de um sistema completo e altamente
+                funcional de gerenciamento de funcionários. Ele inclui funcionalidades como controle de atividades,
+                gestão de desempenho e comunicação interna.</li>
+
+            <h2 class="text-center text-light mt-5">Tarefas</h2>
+
+            <div class="board mt-4 d-flex justify-content-around">
+
+                <div class="colunas">
+                    <h3 class="titulo-colunas"><strong>Nova</strong></h3>
+                    <button class="btn btn-primary mt-4" id="add-remove-card">+</button>
+                    <div class="column p-3 rounded" id="todo">
+                        <div class="card p-3 mb-3">
+                            <h5>Desenvolver API</h5>
+                            <p><strong>Prazo:</strong> 15/01/2024</p>
+                            <p><strong>Responsável:</strong> Pedro Costa</p>
+                            <p><span class="badge bg-warning status" onclick="toggleStatus(this)">Pendente</span></p>
+                        </div>
+                        <div class="card p-3 mb-3">
+                            <h5>Criar interface de usuário</h5>
+                            <p><strong>Prazo:</strong> 20/01/2024</p>
+                            <p><strong>Responsável:</strong> Mariana Souza</p>
+                            <p><span class="badge bg-warning status" onclick="toggleStatus(this)">Pendente</span></p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="colunas">
+                    <h3 class="titulo-colunas"><strong>Em andamento</strong></h3>
+                    <div class="column p-3 rounded" id="todo">
+                        <div class="card p-3 mb-3">
+                            <h5>Integrar frontend com backend</h5>
+                            <p><strong>Prazo:</strong> 28/01/2024</p>
+                            <p><strong>Responsável:</strong> Carla Mendes</p>
+                            <p><span class="badge bg-info status" onclick="toggleStatus(this)">Em andamento</span></p>
+                        </div>
+                        <div class="card p-3 mb-3">
+                            <h5>Testar funcionalidades do sistema</h5>
+                            <p><strong>Prazo:</strong> 05/02/2024</p>
+                            <p><strong>Responsável:</strong> João Lima</p>
+                            <p><span class="badge bg-info status" onclick="toggleStatus(this)">Em andamento</span></p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="colunas" id="concluida">
+                    <h3 class="titulo-colunas"><strong>Concluída</strong></h3>
+                    <div class="column p-3 rounded" id="concluida">
+                        <div class="card p-3 mb-3">
+                            <h5>Finalizar documentação</h5>
+                            <p><strong>Prazo:</strong> 05/01/2024</p>
+                            <p><strong>Responsável:</strong> João Pedro</p>
+                            <p><span class="badge bg-success status" onclick="toggleStatus(this)">Concluída</span></p>
+                        </div>
+                        <div class="card p-3 mb-3">
+                            <h5>Implementar autenticação</h5>
+                            <p><strong>Prazo:</strong> 08/01/2024</p>
+                            <p><strong>Responsável:</strong> Thiago Lima</p>
+                            <p><span class="badge bg-success status" onclick="toggleStatus(this)">Concluída</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="botoes mt-4">
+            <a href="tabeladeprojetos.html" class="btn btn-secondary">Voltar</a>
+        </div>
+
+        <footer class="text-center mt-5 text-light">
+            <p>© 2024 Kaspper. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Função para alternar o status entre "Pendente" e "Em andamento"
+        function toggleStatus(span) {
+            if (span.classList.contains("bg-warning")) {
+                span.classList.remove("bg-warning");
+                span.classList.add("bg-info");
+                span.textContent = "Em andamento";
+            } else if (span.classList.contains("bg-info")) {
+                span.classList.remove("bg-info");
+                span.classList.add("bg-warning");
+                span.textContent = "Pendente";
+            }
+        }
+
+        // Tornar as colunas interativas com Sortable.js
+        document.addEventListener('DOMContentLoaded', function () {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                // Adiciona o evento de duplo clique para habilitar a edição
+                card.ondblclick = function () {
+                    enableEdit(card);
+                };
+            });
+            const columns = document.querySelectorAll('.column');
+            columns.forEach(column => {
+                Sortable.create(column, {
+                    group: 'shared', // Permite mover itens entre colunas
+                    animation: 150, // Adiciona animação ao mover
+                    ghostClass: 'sortable-ghost', // Classe para visualização de item em movimento
+                    onEnd: function (evt) {
+                        const cardStatus = evt.item.querySelector('.status');
+                        // Verifica se o card foi movido para a coluna "Concluída"
+                        if (evt.to.id === 'concluida') {
+                            // Muda o status para "Concluída"
+                            if (cardStatus && !cardStatus.classList.contains('bg-success')) {
+                                cardStatus.classList.remove('bg-warning', 'bg-info');
+                                cardStatus.classList.add('bg-success');
+                                cardStatus.textContent = "Concluída";
+                            }
+                        } else {
+                            // Quando o card é movido para uma coluna que não seja "Concluída",
+                            // ele deve voltar ao estado editável (Pendente ou Em andamento)
+                            if (cardStatus) {
+                                cardStatus.classList.remove('bg-success'); // Remove a classe "Concluída"
+                                cardStatus.classList.add('bg-warning'); // Torna o status editável
+                                cardStatus.textContent = "Pendente"; // Volta para "Pendente"
+                            }
+                        }
+                        console.log(`Card movido de ${evt.from.id} para ${evt.to.id}`);
+                        if (evt.from !== evt.to) {
+                            // Verifica se o card foi movido para uma coluna diferente
+                            console.log(`Card movido de ${evt.from.id} para ${evt.to.id}`);
+                        }
+                    }
+                });
+            });
+        });
+        // Função para criar o card
+        const createButton = document.getElementById('add-remove-card');
+        createButton.addEventListener('click', function () {
+            // Cria o novo card
+            const newCard = document.createElement('div');
+            newCard.classList.add('card', 'p-3', 'mb-3');
+            newCard.innerHTML = `
+            <h5>Novo Card</h5>
+            <p><strong>Prazo:</strong> 10/02/2024</p>
+            <p><strong>Responsável:</strong> Novo Responsável</p>
+            <p><span class="badge bg-warning status" onclick="toggleStatus(this)">Pendente</span></p>
+        `;
+
+            // Adiciona o card à primeira coluna (ou qualquer coluna desejada)
+            const todoColumn = document.getElementById('todo'); // Substitua 'todo' pelo ID de sua coluna
+            todoColumn.appendChild(newCard);
+
+            // Adiciona o evento de duplo clique para habilitar edição do novo card
+            newCard.ondblclick = function () {
+                enableEdit(newCard);
+            };
+        });
+        // Função para habilitar edição do card
+        function enableEdit(card) {
+            if (!card.dataset.originalContent) {
+                card.dataset.originalContent = card.innerHTML;
+            }
+
+            const title = card.querySelector('h5')?.textContent || '';
+            const deadline = card.querySelector('p:nth-child(2)')?.textContent.replace('Prazo:', '').trim() || '';
+            const responsible = card.querySelector('p:nth-child(3)')?.textContent.replace('Responsável:', '').trim() || '';
+
+            // Substitui o conteúdo do card por um formulário de edição com botão de excluir
+            card.innerHTML = `
+        <input type="text" class="form-control mb-2" id="edit-title" value="${title}" placeholder="Título">
+        <input type="date" class="form-control mb-2" id="edit-deadline" value="${deadline}">
+        <input type="text" class="form-control mb-2" id="edit-responsible" value="${responsible}" placeholder="Responsável">
+        <div class="d-flex justify-content-between">
+            <button class="btn btn-success btn-sm" onclick="saveEdit(this)">Salvar</button>
+            <button class="btn btn-secondary btn-sm" onclick="cancelEdit(this)">Cancelar</button>
+            <button class="btn btn-danger btn-sm" onclick="deleteCard(this)">Excluir</button>
+        </div>
+    `;
+        }
+
+        // Função para salvar as alterações do card
+        function saveEdit(button) {
+            const form = button.closest('.card');
+            const newTitle = form.querySelector('#edit-title').value;
+            const newDeadline = form.querySelector('#edit-deadline').value;
+            const newResponsible = form.querySelector('#edit-responsible').value;
+
+            // Atualiza o conteúdo do card
+            form.innerHTML = `
+        <h5>${newTitle}</h5>
+        <p><strong>Prazo:</strong> ${newDeadline}</p>
+        <p><strong>Responsável:</strong> ${newResponsible}</p>
+        <p><span class="badge bg-warning status" onclick="toggleStatus(this)">Pendente</span></p>
+    `;
+
+            // Reatribui o evento de duplo clique para o card
+            form.ondblclick = function () {
+                enableEdit(form);
+            };
+        }
+
+        // Função para cancelar a edição do card
+        function cancelEdit(button) {
+            const card = button.closest('.card');
+
+            // Restaura o conteúdo original do card
+            card.innerHTML = card.dataset.originalContent;
+
+            // Reatribui o evento de duplo clique para o card
+            card.ondblclick = function () {
+                enableEdit(card);
+            };
+        }
+
+        // Função para excluir o card
+        function deleteCard(button) {
+            const card = button.closest('.card');
+            card.remove(); // Remove o card do DOM
+            console.log("Card excluído.");
+        }
+
+    </script>
+</body>
+
+</html>
